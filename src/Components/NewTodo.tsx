@@ -1,15 +1,16 @@
 /** @format */
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
+import { TodoContext } from "../store/TodoContext";
+import Todo from "./../models/todo";
 
-const NewTodo: React.FunctionComponent<{ addTodo: (text: string) => void }> = (
-  props
-) => {
+const NewTodo: React.FunctionComponent = (props) => {
+  const context = useContext(TodoContext);
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
   const submitTodoHandler = (event: React.FormEvent) => {
     event.preventDefault();
     const enteredText = todoTextInputRef.current!.value;
-    props.addTodo(enteredText);
+    context.addTodo(enteredText);
   };
 
   return (

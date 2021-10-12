@@ -5,6 +5,8 @@ import Todos from "./Components/Todos";
 import Todo from "./models/todo";
 import NewTodo from "./Components/NewTodo";
 
+import TodoContextProvider from "./store/TodoContext";
+
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
@@ -31,9 +33,11 @@ const App = () => {
   return (
     <div>
       <div className="App">
-        <Todos todos={todos} removeTodo={removeTodoHandler} />
-        {/* <Shows items={shows} /> */}
-        <NewTodo addTodo={addTodoHandler} />
+        <TodoContextProvider>
+          <Todos />
+          {/* <Shows items={shows} /> */}
+          <NewTodo />
+        </TodoContextProvider>
       </div>
     </div>
   );
